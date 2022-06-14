@@ -168,6 +168,15 @@ translate_text() # This line will call our function. Without it, python will not
 
 ```
 # USING MAIN FUNCTION
+When this code is run, the interpreter will define a special variable called __name__ and assign the value of "__main__" to the code in this python file. So the code in our python file becomes __name__ == "__main__".
+
+When we use import statements, we can import code from other files into our python program. When this happens, the imported code is set a __name__ value of the modules name.
+
+By setting the __name__=="__main__" we can control the order in which the code in this file is executed, telling python to run the code in this file which has the name of __main__ rather than the code imported from another file. This avoids situations where your code could run an imported script, resulting in unwanted behavior.
+
+We do this using an if statement. If statements are covered in more detail later. At this stage, all you need to understand is that it is telling the python interpreter that if the __name__ is equal to __main__ which relates to the code in this python file, then run the main() function.
+
+The main() function therefore sets the start point for our code to control the order in which our code executes. It is conventional to include all the calls to your functions within the main() function. This will help others to read your code and understand the logic and flow
 
 ```
 import boto3
@@ -251,3 +260,127 @@ if __name__=="__main__":
 
 ```
 # Step 1 - User input from the console
+In our Amazon Translate example, we have provided the values directly in the code. What if we want to provide the values as user input at the time we run the program?
+
+In this step, we learn how to provide user input when the program is run and pass this to the function.
+# The input() function
+```
+import boto3
+
+def translate_text(**kwargs): 
+    client = boto3.client('translate')
+    response = client.translate_text(**kwargs)
+    print(response) 
+
+### Change below this line only ###
+
+text = input("Provide the text you want translating: ")
+source_language_code = input("Provide the two letter source language code: ")
+target_language_code = input("Provide the two letter target language code: ") 
+
+def main():
+    translate_text(
+        Text=text,
+        SourceLanguageCode=source_language_code,
+        TargetLanguageCode=target_language_code
+        )
+
+if __name__=="__main__":
+    main()
+
+```
+# ARGUMENT PARSER
+
+```
+import argparse # argparse is a built in python package, we add it with an import statement
+import boto3
+
+# Define the parser variable to equal argparse.ArgumentParser()
+parser = argparse.ArgumentParser(description="Provides translation between one source language and another of the same set of languages.")
+
+# Add each of the arguments using the parser.add_argument() method
+parser.add_argument(
+    '--text',
+    dest="Text",
+    type=str,
+    help="The text to translate. The text string can be a maximum of 5,000 bytes long. Depending on your character set, this may be fewer than 5,000 characters",
+    required=True
+    )
+
+parser.add_argument(
+    '--source-language-code', 
+    dest="SourceLanguageCode", 
+    type=str, 
+    help="The language code for the language of the source text. The language must be a language supported by Amazon Translate.",
+    required=True
+    )
+
+parser.add_argument(
+    '--target-language-code',
+    dest="TargetLanguageCode",
+    type=str,
+    help="The language code requested for the language of the target text. The language must be a language support by Amazon Translate.",
+    required=True
+    )
+
+# This will inspect the command line, convert each argument to the appropriate type and then invoke the appropriate action.
+args = parser.parse_args()
+
+def translate_text(**kwargs): 
+    client = boto3.client('translate')
+    response = client.translate_text(**kwargs)
+    print(response) 
+
+def main():
+    # vars() is an inbuilt function which returns a dictionary object
+    translate_text(**vars(args))
+
+if __name__=="__main__":
+    main()
+```
+* To run the program, enter the following command in the terminal:
+
+`python lab_5_step_2_cli_arguments.py --text "we are learning python on AWS" --source-language-code en --target-language-code fr`
+
+* We have added the parameters on the command line.
+
+* Each parameter relates to each block for parser.add_argument
+
+# INPUT FILE 
+
+```
+def open_input(file):
+    with open(file, 'r') as f:
+        text = f.read() #We use read() to read the actual contents of the file
+        print(text)
+
+def main():
+    open_input("text.txt")
+
+if __name__=="__main__":
+    main()
+
+```
+# TEXT.TXT
+```
+"AWS Sysops Administrator Associate"
+```
+
+# What did python do?
+* Python used text.txt as an input parameter for the file.
+* It used with open() to open the file and r as read-only.
+* It used the .read() method to read the contents of the file and assign it to the variable text.
+* It printed the variable to return the sentence.
+
+# Step 4 - JSON
+JSON  stands for Javascript Object Notation and is pronounced "jason". It is a very similar structure to python dictionaries and lists, with only a few exceptions. It is a very common format for computer programs to exchange information in using Application Programming Interfaces (APIs).
+
+![image](https://user-images.githubusercontent.com/71001536/173601807-cfc71493-534e-4c2c-abde-2c3e3410290a.png)
+
+# json.loads() & json.dumps()
+Before we use an external file it is worth spending time learning about json.loads() and json.dumps(). These two methods use JSON strings, denoted by the 's'. When learning to manipulate JSON it is easy to get confused between json.loads() and json.load() or json.dumps() and json.dump().
+
+Here is the easy way to know which to use.
+
+json.load() & json.dump() - Use to input and output JSON from files and into files.
+json.loads() & json.dumps() - Use to input and outputting JSON from strings and into strings.
