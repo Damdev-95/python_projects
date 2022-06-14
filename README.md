@@ -32,11 +32,11 @@ Once the virtual environment has been created, you need to activate it. Once act
 # Creating a requirements.txt file
 When you use pip freeze you see all the packages installed into your virtual environment. We need to be able to recreate the set of packages when the code is reused elsewhere. For example, giving the code to someone else or when running it in a different environment. To accomplish this pip uses a requirements.txt file. This file contains a list of all the packages and versions you need to install the new environment.
 
-You can create a requirements.txt file by using the command pip freeze > requirements.txt
+You can create a requirements.txt file by using the command `pip freeze > requirements.txt`
 
 This will create the requirements.txt file in the current directory.
 
-To install a requirements.txt file in the new virtual environment you type pip install -r requirements.txt in the new virtual environment to install all the same packages and dependencies from that file.
+To install a requirements.txt file in the new virtual environment you type `pip install -r requirements.txt` in the new virtual environment to install all the same packages and dependencies from that file.
 
 ```
 a_str = "This is an example of a string in quotes" # In python the word string is abbreviated to str
@@ -151,4 +151,40 @@ To remove a key-value pair you use the del statement with the name of the dictio
 >>> del user["family_name"]
 >>> print(user)
 {'first_name': 'Ada'}
+```
+# FUCTION TO TRANSLATE USING AWS TRANSLATE
+
+```
+def translate_text(): 
+    response = client.translate_text(
+        Text='My name is Sulaiman,I love you Halimah', 
+        SourceLanguageCode='en', 
+        TargetLanguageCode='fr' 
+    )
+#### Add the new text below this line ####
+    print(response) # this code is inside the function and will print the contents of the variable 'response' 
+
+translate_text() # This line will call our function. Without it, python will not do anything.
+
+```
+# USING MAIN FUNCTION
+
+```
+import boto3
+
+client = boto3.client('translate')
+
+def translate_text():
+    response = client.translate_text(
+        Text='I am learning to code in AWS',
+        SourceLanguageCode='en',
+        TargetLanguageCode='fr'
+    )
+    print(response) # this code is inside the function and will print the contents of the variable 'response'
+
+def main():
+    translate_text()
+
+if __name__=="__main__":
+    main()
 ```
