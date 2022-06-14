@@ -75,3 +75,13 @@ This is a string over
 three lines
         with the third line indented
 ```
+# Dictionaries
+A dictionary is a way of storing related information in key-value pairs. It uses a key as an identifier and a value to store the information. For example, the key could be first_name and the value could be Ada.
+
+A dictionary when written in python would look like {"first_name":"Ada"}. A dictionary in python is abbreviated to dict and has the following syntax {"key":"value"}. The key is a string providing an identifier and the value can be the same kind of values you would store in a variable.
+
+Dictionaries are very common in AWS, so you will see them frequently.
+
+* They are used to exchange information between different services and functions
+* They are returned by Application Programming Interfaces (API)
+* They are used as Tag values
