@@ -39,3 +39,39 @@ test_function = my_function() #function is abbreviated to func
 example_tuple = ("apple", "orange", "pear")
 boolean_values = True # boolean is abbreviated to bool
 ```
+# Using Variables in Strings
+Imagine we want to use the value of a variable in the middle of a string. This can be done a few ways in python.
+
+# .format()
+In this method you can use the {} in your string to indicate where the variable should go. Then use .format(variable_name) after the quotation marks. If you have multiple variables, for each variable you use a {}. In the .format() separate each variable with a comma. For example .format(variable_1, variable_2).
+
+```
+first_name = "Sulaiman"
+surname = "Olubiyi"
+print("My first name is {}. My family name is {}".format(first_name, surname))
+```
+
+# f strings
+Since python version 3.6 it has been possible to use a format called f-strings to include variables in your strings. Some people find this format easier to read.
+
+```
+firstname = "Jane"
+surname = "Doe"
+
+print(f"My first name is {firstname}. My family name is {surname}")
+```
+
+# New Lines and indentation
+If you want your text to go over several lines you can use \n and \t. The \ character is called an escape character.
+
+The n tells python to put the text on the next line.
+The t tells python to add a tab spacing.
+
+```
+string = "This is a string over\nthree lines\n\twith the third line indented"
+print(string)
+
+This is a string over
+three lines
+        with the third line indented
+```
