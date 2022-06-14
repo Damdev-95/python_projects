@@ -250,3 +250,4 @@ if __name__=="__main__":
     main()
 
 ```
+# Step 1 - User input from the console
