@@ -1,4 +1,4 @@
-##  python_projects
+#  Python_projects
 python development for network engineers
 
 ## Create a Virtual Environment
@@ -24,6 +24,18 @@ Once the virtual environment has been created, you need to activate it. Once act
 
 `.\my_venv\Scripts\Activate.ps1`
 
-# To know you are inside the virtual environment your command prompt will have the prefix (my_venv). Now any packages you use will be stored in a folder structure inside your virtual environment.
+* To know you are inside the virtual environment your command prompt will have the prefix (my_venv). Now any packages you use will be stored in a folder structure inside your virtual environment.
 
-# To exit from the virtual environment, you type `deactivate` and the command prompt will no longer be prefixed by (my_venv).
+* To exit from the virtual environment, you type `deactivate` and the command prompt will no longer be prefixed by (my_venv).
+
+```
+a_str = "This is an example of a string in quotes" # In python the word string is abbreviated to str
+my_float = 5.5
+an_integer = 5 # integer is abbreviated to int
+shopping_list = ["apples", "oranges", "pears"]
+a_dict = {"userId": "JBloggs"} # dictionary is abbreviated to dict
+my_var = another_variable # variable is abbreviated to var
+test_function = my_function() #function is abbreviated to func
+example_tuple = ("apple", "orange", "pear")
+boolean_values = True # boolean is abbreviated to bool
+```
