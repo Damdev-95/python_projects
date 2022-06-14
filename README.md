@@ -28,6 +28,16 @@ Once the virtual environment has been created, you need to activate it. Once act
 
 * To exit from the virtual environment, you type `deactivate` and the command prompt will no longer be prefixed by (my_venv).
 
+
+# Creating a requirements.txt file
+When you use pip freeze you see all the packages installed into your virtual environment. We need to be able to recreate the set of packages when the code is reused elsewhere. For example, giving the code to someone else or when running it in a different environment. To accomplish this pip uses a requirements.txt file. This file contains a list of all the packages and versions you need to install the new environment.
+
+You can create a requirements.txt file by using the command pip freeze > requirements.txt
+
+This will create the requirements.txt file in the current directory.
+
+To install a requirements.txt file in the new virtual environment you type pip install -r requirements.txt in the new virtual environment to install all the same packages and dependencies from that file.
+
 ```
 a_str = "This is an example of a string in quotes" # In python the word string is abbreviated to str
 my_float = 5.5
@@ -85,3 +95,60 @@ Dictionaries are very common in AWS, so you will see them frequently.
 * They are used to exchange information between different services and functions
 * They are returned by Application Programming Interfaces (API)
 * They are used as Tag values
+
+# Create
+Dictionaries can be created by assigning the key-values you want to store in the dictionary.
+
+Using the python interactive mode, try the following:
+```
+>>> user = {"first_name":"Ada"}
+>>> print(user)
+{'first_name': 'Ada'}
+```
+or if you are going to be adding the contents of the dictionary later, you can declare an empty dictionary. You can create an empty dictionary in two ways:
+
+Assigning {} to a variable, for example:
+
+account_details = {}
+
+or use the dict() constructor:
+
+account_details = dict()
+
+Read
+To read the value associated with a key, you need to provide the name of the dictionary and the the value of the key inside square brackets.
+
+Try the following:
+```
+>>> user = {"first_name":"Ada"}
+>>> print(user["first_name"])
+Ada
+```
+# Update
+Add a key-value
+Dictionaries are mutable, which means they can be changed after you create them. You can add, update or delete the key-value pairs in a dictionary.
+
+To add an additional key-value to a dictionary, provide the dictionary name, the new key in [] and a value after an = sign.
+
+Try the following:
+```
+>>>user["family_name"] = "Byron"
+>>>print(user)
+{'first_name': 'Ada', 'family_name': 'Byron'}
+```
+
+# Modify a value
+To modify a value in a similar way to adding it. You provide the new value after the = sign.
+```
+user["family_name"] = "Lovelace"
+print(user)
+{'first_name': 'Ada', 'family_name': 'Lovelace'}
+```
+# Delete a Key-Value Pair
+To remove a key-value pair you use the del statement with the name of the dictionary and the key you want to delete.
+
+```
+>>> del user["family_name"]
+>>> print(user)
+{'first_name': 'Ada'}
+```
